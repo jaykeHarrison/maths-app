@@ -9,16 +9,16 @@ describe("makeAdditionQuestion", () => {
   });
   test("returned object has answerString property with string value", () => {
     const result = makeAdditionQuestion();
-    const { answerString } = result;
+    const { questionString } = result;
 
-    expect(typeof answerString).toBe("string");
+    expect(typeof questionString).toBe("string");
   });
   test("answerString is of correct format", () => {
     for (let i = 0; i < 100; i++) {
       const result = makeAdditionQuestion();
-      const { answerString } = result;
+      const { questionString } = result;
       const regex = /^[0-9]{1,2} \+ [0-9]{1,2} =$/;
-      const isCorrectFormat = regex.test(answerString);
+      const isCorrectFormat = regex.test(questionString);
 
       expect(isCorrectFormat).toBe(true);
     }
@@ -31,10 +31,10 @@ describe("makeAdditionQuestion", () => {
   });
   test("returned answer solves the answerString", () => {
     const result = makeAdditionQuestion();
-    const { answerString, answer } = result;
+    const { questionString, answer } = result;
     const regex = /[0-9]{1,2}/g;
 
-    const [firstNum, secondNum] = answerString.match(regex);
+    const [firstNum, secondNum] = questionString.match(regex);
     const expectedAnswer = parseInt(firstNum) + parseInt(secondNum);
 
     expect(answer).toEqual(expectedAnswer);
