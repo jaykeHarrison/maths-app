@@ -3,9 +3,9 @@ function makeDivideQuestion() {
   const answer = Math.ceil(Math.random() * 10);
   const firstNum = secondNum * answer;
 
-  const answerString = `${firstNum} ÷ ${secondNum} =`;
+  const questionString = `${firstNum} ÷ ${secondNum} =`;
 
-  return { answerString, answer };
+  return { questionString, answer };
 }
 
 module.exports = makeDivideQuestion;

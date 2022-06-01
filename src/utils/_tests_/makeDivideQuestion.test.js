@@ -1,4 +1,3 @@
-const { type } = require("@testing-library/user-event/dist/type");
 const makeDivideQuestion = require("../makeDivideQuestion");
 
 describe("makeDivideQuestion", () => {
@@ -9,15 +8,15 @@ describe("makeDivideQuestion", () => {
     expect(Array.isArray(result)).toBe(false);
   });
   test("returned object has answerString property with string value", () => {
-    const { answerString } = makeDivideQuestion();
+    const { questionString } = makeDivideQuestion();
 
-    expect(typeof answerString).toBe("string");
+    expect(typeof questionString).toBe("string");
   });
   test("returned answerString is of correct format", () => {
     for (let i = 0; i < 2; i++) {
-      const { answerString } = makeDivideQuestion();
+      const { questionString } = makeDivideQuestion();
       const regex = /^[0-9]{1,3} ÷ [0-9]{1,2} =$/;
-      const isCorrectFormat = regex.test(answerString);
+      const isCorrectFormat = regex.test(questionString);
 
       expect(isCorrectFormat).toBe(true);
     }
@@ -29,10 +28,10 @@ describe("makeDivideQuestion", () => {
   });
   test("returned answer solves the answerString", () => {
     for (let i = 0; i < 100; i++) {
-      const { answerString, answer } = makeDivideQuestion();
+      const { questionString, answer } = makeDivideQuestion();
       const regex = /[0-9]{1,3}/g;
 
-      const [firstNum, secondNum] = answerString.match(regex);
+      const [firstNum, secondNum] = questionString.match(regex);
       const expectedAnswer = parseInt(firstNum) / parseInt(secondNum);
 
       expect(answer).toEqual(expectedAnswer);
